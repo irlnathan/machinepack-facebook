@@ -39,7 +39,7 @@ module.exports = {
       example: 'http://www.facebook.com/dialog/oauth?crazystuff=stuff'
     }
   },
-  fn: function ($i,$x) {
+  fn: function (inputs,exits) {
 
 
     // hit GET projects/ and send the api token as a header
@@ -51,8 +51,8 @@ module.exports = {
         // ????
       },
     }, function (err, responseBody) {
-      if (err) { return cb(err); }
-      return cb(null, responseBody);
+      if (err) { return exits(err); }
+      return exits(null, responseBody);
     });
 
     // See https://github.com/mikermcneil/node-deezer for funsies
