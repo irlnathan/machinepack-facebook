@@ -1,0 +1,34 @@
+{
+  "name": "machinepack-facebook",
+  "version": "0.1.0",
+  "description": "Machines for working with the facebook.",
+  "scripts": {
+    "test": "mocha -b"
+  },
+  "keywords": [
+    "machine",
+    "machines",
+    "facebook",
+    "facebook-api"
+  ],
+  "author": "Mike McNeil",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~1.19.0"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "async": "^0.9.0",
+    "request": "^2.45.0",
+    "node-machine": "^0.3.0"
+  },
+  "machinepack": {
+    "focus": "fs",
+    "machine-api": "~0.0.0",
+    "machines": [
+      "get-access-token",
+      "get-login-url",
+      "get-facebook-user-by-access-token"
+    ]
+  }
+}
