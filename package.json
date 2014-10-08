@@ -28,7 +28,8 @@
     "machines": [
       "get-access-token",
       "get-login-url",
-      "get-facebook-user-by-access-token"
+      "get-user-by-access-token",
+      "swap-short-term-token-for-long"
     ]
   }
 }

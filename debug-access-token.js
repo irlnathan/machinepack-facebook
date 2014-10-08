@@ -7,7 +7,7 @@ var doJSONRequest = require('./lib/do-request');
 
 
 module.exports = {
-  id: 'get-facebook-user-by-access-token',
+  id: 'get-user-by-access-token',
   moduleName: 'machinepack-facebook',
   description: 'Get information about the Facebook user with the specified access token.',
   notes: undefined,
@@ -27,20 +27,22 @@ module.exports = {
       }
     }
   },
-  fn: function ($i,$x) {
+  fn: function (inputs,exits) {
 
-
+console.log('Getting user with inputs:',inputs);
     // hit GET projects/ and send the api token as a header
     doJSONRequest({
       method: 'get',
-      url: '/',
-      data: {},
+      url: '/v2.1/me',
+      data: {
+        'access_token': inputs.accessToken
+      },
       headers: {
         // ????
       },
     }, function (err, responseBody) {
-      if (err) { return cb(err); }
-      return cb(null, responseBody);
+      if (err) { return exits(err); }
+      return exits(null, responseBody);
     });
 
     // See https://github.com/mikermcneil/node-deezer for funsies

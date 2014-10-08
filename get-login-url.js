@@ -2,7 +2,7 @@
  * Module dependencies
  */
 
-var doJSONRequest = require('./lib/do-request');
+// var doJSONRequest = require('./lib/request-login-url');
 
 
 
@@ -18,11 +18,12 @@ module.exports = {
       description: 'Your Facebook app id',
       required: true
     },
-    appSecret: {
-      example: 'dsg4901g0123456',
-      description: 'Your Facebook app secret',
-      required: true
-    },
+    // Not a parameter
+    // appSecret: {
+    //   example: 'dsg4901g0123456',
+    //   description: 'Your Facebook app secret',
+    //   required: true
+    // },
     callbackUrl: {
       example: 'http://localhost:1337/user/facebook/login',
       description: 'The URL which will be hit after the user successfully logs in.  Usually contains some kind of identifying information about the user.'
@@ -41,22 +42,15 @@ module.exports = {
   },
   fn: function (inputs,exits) {
 
+    if (!(inputs['client_id'] || inputs['appId'] || inputs['redirect_uri'])){
+      console.log('Error!');
+      return exits(new Error('At least one required param was not included'));
+    }
 
-    // hit GET projects/ and send the api token as a header
-    doJSONRequest({
-      method: 'get',
-      url: '/????',
-      data: {},
-      headers: {
-        // ????
-      },
-    }, function (err, responseBody) {
-      if (err) { return exits(err); }
-      return exits(null, responseBody);
-    });
+    var facebookRedirectUrl = 'https://www.facebook.com/dialog/oauth?client_id=' + inputs.appId + '&redirect_uri=' + inputs.callbackUrl + '&scope=' + inputs.permissions.join(',');
+
+    return exits(null,facebookRedirectUrl);
 
     // See https://github.com/mikermcneil/node-deezer for funsies
   }
 };
-
-
