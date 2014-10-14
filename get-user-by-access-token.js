@@ -14,7 +14,7 @@ module.exports = {
   moreInfoUrl: '',
   inputs: {
     accessToken: {
-      example: '215798311808508',
+      example: 'CA2Emk9XsJUIBAHB9sTF5rOdNmAXTDjiHxZaZC1GYtFZCcdYGVnLYZB7jZCvensIpGc22yEzN6CL6wtQ9LPVXTNkuP6eQoUQ0toEVPrmTTqDpj0POijBpsuZBnx7jrZCHaTw8leiZBn0R8u6gZAYZAuD77cA3tnDMYvHhrl42CnljROeC9maWoa5zbsT2TZBXdL9wEuGQDSxKqRPyajRw3P3HEK',
       description: 'The access token which allows you to do things and get information on behalf of a particular Facebook user.',
       required: true
     }
@@ -44,8 +44,6 @@ console.log('Getting user with inputs:',inputs);
       if (err) { return exits(err); }
       return exits(null, responseBody);
     });
-
-    // See https://github.com/mikermcneil/node-deezer for funsies
   }
 };
 

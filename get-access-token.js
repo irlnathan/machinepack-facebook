@@ -35,7 +35,10 @@ module.exports = {
     error: {},
     success: {
       description: 'The access token which allows you to do things and get information on behalf of a particular Facebook user.',
-      example: 'aw9391th139sdvna$g00sdK!13gd'
+      example: {
+        token: 'CA2Emk9XsJUIBAHB9sTF5rOdNmAXTDjiHxZaZC1GYtFZCcdYGVnLYZB7jZCvensIpGc22yEzN6CL6wtQ9LPVXTNkuP6eQoUQ0toEVPrmTTqDpj0POijBpsuZBnx7jrZCHaTw8leiZBn0R8u6gZAYZAuD77cA3tnDMYvHhrl42CnljROeC9maWoa5zbsT2TZBXdL9wEuGQDSxKqRPyajRw3P3HEK',
+        expires: 39523862396
+      }
     }
   },
   fn: function (inputs,exits) {
@@ -51,15 +54,23 @@ module.exports = {
         'client_secret':inputs.appSecret,
         'code':inputs.code,
       },
-      headers: {
-        // ????
-      },
+      headers: {},
     }, function (err, responseBody) {
-      if (err) { return exits(err); }
-      return exits(null, responseBody);
-    });
+      if (err) {
+        return exits.error(err);
+      }
 
-    // See https://github.com/mikermcneil/node-deezer for funsies
+      // Parse Facebook Access Token from request Body
+      var token;
+      try {
+        return exits(null, {
+          token: responseBody.match(/access_token=([a-z0-9]+)[^a-z0-9]{0,}/i)[1],
+          expires: responseBody.match(/expires=([0-9]+)[^0-9]{0,}/i)[1]
+        });
+      } catch (parseError){
+        return exits.error(parseError);
+      }
+    });
   }
 };
 

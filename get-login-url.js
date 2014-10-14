@@ -2,7 +2,7 @@
  * Module dependencies
  */
 
-// var doJSONRequest = require('./lib/request-login-url');
+var util = require('util');
 
 
 
@@ -18,26 +18,19 @@ module.exports = {
       description: 'Your Facebook app id',
       required: true
     },
-    // Not a parameter
-    // appSecret: {
-    //   example: 'dsg4901g0123456',
-    //   description: 'Your Facebook app secret',
-    //   required: true
-    // },
     callbackUrl: {
       example: 'http://localhost:1337/user/facebook/login',
       description: 'The URL which will be hit after the user successfully logs in.  Usually contains some kind of identifying information about the user.'
     },
     permissions: {
-      example: ['readprivatemessages','foo', 'seefriendsorwhatever'],
+      example: ['email','friends'],
       description: 'The Facebook permissions requested by this application.'
     }
-    // ... anything else this needs
   },
   exits: {
     error: {},
     success: {
-      example: 'http://www.facebook.com/dialog/oauth?crazystuff=stuff'
+      example: 'https://www.facebook.com/dialog/oauth?client_id=215798311808508&redirect_uri=http://localhost:1337/user/facebook/login&scope=email,friends'
     }
   },
   fn: function (inputs,exits) {
@@ -47,10 +40,9 @@ module.exports = {
       return exits(new Error('At least one required param was not included'));
     }
 
-    var facebookRedirectUrl = 'https://www.facebook.com/dialog/oauth?client_id=' + inputs.appId + '&redirect_uri=' + inputs.callbackUrl + '&scope=' + inputs.permissions.join(',');
-
-    return exits(null,facebookRedirectUrl);
-
-    // See https://github.com/mikermcneil/node-deezer for funsies
+    return exits(null, util.format(
+      'https://www.facebook.com/dialog/oauth?client_id=%s&redirect_uri=%s&scope=%s',
+      inputs.appId, inputs.callbackUrl, inputs.permissions.join(',')
+    ));
   }
 };

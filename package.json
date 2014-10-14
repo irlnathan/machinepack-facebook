@@ -28,8 +28,7 @@
     "machines": [
       "get-access-token",
       "get-login-url",
-      "get-user-by-access-token",
-      "swap-short-term-token-for-long"
+      "get-user-by-access-token"
     ]
   }
 }
