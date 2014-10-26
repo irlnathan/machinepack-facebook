@@ -20,7 +20,8 @@ module.exports = {
     },
     callbackUrl: {
       example: 'http://localhost:1337/user/facebook/login',
-      description: 'The URL which will be hit after the user successfully logs in.  Usually contains some kind of identifying information about the user.'
+      description: 'The URL which will be hit after the user successfully logs in.  Usually contains some kind of identifying information about the user.',
+      required: true
     },
     permissions: {
       example: ['email','friends'],
@@ -35,14 +36,22 @@ module.exports = {
   },
   fn: function (inputs,exits) {
 
-    if (!(inputs['client_id'] || inputs['appId'] || inputs['redirect_uri'])){
-      console.log('Error!');
-      return exits(new Error('At least one required param was not included'));
-    }
+    inputs.permissions = inputs.permissions || [];
 
-    return exits(null, util.format(
-      'https://www.facebook.com/dialog/oauth?client_id=%s&redirect_uri=%s&scope=%s',
-      inputs.appId, inputs.callbackUrl, inputs.permissions.join(',')
-    ));
+    try {
+
+      if (!(inputs['client_id'] || inputs['appId'] || inputs['redirect_uri'])){
+        console.log('Error!');
+        return exits(new Error('At least one required param was not included'));
+      }
+
+      return exits(null, util.format(
+        'https://www.facebook.com/dialog/oauth?client_id=%s&redirect_uri=%s&scope=%s',
+        inputs.appId, inputs.callbackUrl, inputs.permissions.join(',')
+      ));
+    }
+    catch(e) {
+      return exits.error(e);
+    }
   }
 };
