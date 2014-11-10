@@ -1,17 +1,10 @@
-/**
- * Module dependencies
- */
-
-var doJSONRequest = require('./lib/do-request');
-
-
-
 module.exports = {
-  id: 'get-user-by-access-token',
-  moduleName: 'machinepack-facebook',
+
+  identity: 'get-user-by-access-token',
+  friendlyName: 'Get user by access token',
   description: 'Get information about the Facebook user with the specified access token.',
-  notes: undefined,
-  moreInfoUrl: '',
+  cacheable: true,
+
   inputs: {
     accessToken: {
       example: 'CA2Emk9XsJUIBAHB9sTF5rOdNmAXTDjiHxZaZC1GYtFZCcdYGVnLYZB7jZCvensIpGc22yEzN6CL6wtQ9LPVXTNkuP6eQoUQ0toEVPrmTTqDpj0POijBpsuZBnx7jrZCHaTw8leiZBn0R8u6gZAYZAuD77cA3tnDMYvHhrl42CnljROeC9maWoa5zbsT2TZBXdL9wEuGQDSxKqRPyajRw3P3HEK',
@@ -19,30 +12,30 @@ module.exports = {
       required: true
     }
   },
+
+  defaultExit: 'success',
+  catchallExit: 'error',
+
   exits: {
     error: {},
-    success: {
-      example: {
-        // ?
-      }
-    }
+    success: {}
   },
+
   fn: function (inputs,exits) {
 
-console.log('Getting user with inputs:',inputs);
-    // hit GET projects/ and send the api token as a header
+    var doJSONRequest = require('../lib/do-request');
+
+    // GET projects/ and send the api token as a header
     doJSONRequest({
       method: 'get',
       url: '/v2.1/me',
       data: {
         'access_token': inputs.accessToken
       },
-      headers: {
-        // ????
-      },
+      headers: {},
     }, function (err, responseBody) {
-      if (err) { return exits(err); }
-      return exits(null, responseBody);
+      if (err) { return exits.error(err); }
+      return exits.success(responseBody);
     });
   }
 };

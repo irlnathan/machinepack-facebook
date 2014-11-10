@@ -1,17 +1,10 @@
-/**
- * Module dependencies
- */
-
-var util = require('util');
-
-
-
 module.exports = {
-  id: 'get-login-url',
-  moduleName: 'machinepack-facebook',
+
+  identity: 'get-login-url',
+  friendlyName: 'Get login url',
   description: 'Get the Facebook URL a user should visit to allow/deny the specified Facebook Developer app (i.e. your app).',
-  notes: undefined,
-  moreInfoUrl: '',
+  cacheable: true,
+
   inputs: {
     appId: {
       example: '215798311808508',
@@ -24,28 +17,33 @@ module.exports = {
       required: true
     },
     permissions: {
-      example: ['email','friends'],
+      example: ['email'],
       description: 'The Facebook permissions requested by this application.'
     }
   },
+
+  defaultExit: 'success',
+  catchallExit: 'error',
+
   exits: {
-    error: {},
+    error: {
+      example: {
+        message: ''
+      }
+    },
     success: {
       example: 'https://www.facebook.com/dialog/oauth?client_id=215798311808508&redirect_uri=http://localhost:1337/user/facebook/login&scope=email,friends'
     }
   },
-  fn: function (inputs,exits) {
+
+  fn: function (inputs, exits) {
+
+    var util = require('util');
 
     inputs.permissions = inputs.permissions || [];
 
     try {
-
-      if (!(inputs['client_id'] || inputs['appId'] || inputs['redirect_uri'])){
-        console.log('Error!');
-        return exits(new Error('At least one required param was not included'));
-      }
-
-      return exits(null, util.format(
+      return exits.success(util.format(
         'https://www.facebook.com/dialog/oauth?client_id=%s&redirect_uri=%s&scope=%s',
         inputs.appId, inputs.callbackUrl, inputs.permissions.join(',')
       ));
