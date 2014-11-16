@@ -3,6 +3,7 @@ module.exports = {
   identity: 'get-user-by-access-token',
   friendlyName: 'Get user by access token',
   description: 'Get information about the Facebook user with the specified access token.',
+  extendedDescription: 'Retrieve the full Facebook user record accessible with the specified access token.  See https://developers.facebook.com/docs/graph-api/reference/v2.2/user for a reference of all fields returned.',
   cacheable: true,
 
   inputs: {
