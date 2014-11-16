@@ -3,6 +3,7 @@ module.exports = {
   identity: 'get-longterm-access-token',
   friendlyName: 'Get longterm access token',
   description: 'Swap a short term access token for a long term one.',
+  extendedDescription: 'Retrieve a new long-term access token, which allows you to get information and perform actions on behalf of a particular Facebook user. Long-term tokens usually have a lifetime of about 60 days.',
   cacheable: false,
 
   inputs: {
@@ -28,7 +29,7 @@ module.exports = {
   exits: {
     error: {},
     success: {
-      description: 'The long term access token which allows you to do things and get information on behalf of a particular Facebook user. Should expire no earlier than 60 days.',
+      description: 'The new long-term access token.',
       example: 'aw9391th139sdvna$g00sdK!13gd'
     }
   },
