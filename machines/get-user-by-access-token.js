@@ -20,7 +20,20 @@ module.exports = {
       description: 'Triggered when the Facebook API returns an error (i.e. a non-2xx status code)'
     },
     success: {
-      description: 'Returns all available data for the Facebook user connected to the specified access token. Advanced details of all possible fields available at https://developers.facebook.com/docs/graph-api/reference/v2.2/user.'
+      description: 'Returns all available data for the Facebook user connected to the specified access token. Advanced details about each of the keys below are available at https://developers.facebook.com/docs/graph-api/reference/v2.2/user.',
+      example: {
+        id: '7653384',
+        email: 'foobar@gzail.com',
+        first_name: 'Brendan',
+        gender: 'female',
+        last_name: 'Eich',
+        link: 'http://www.facebook.com/7653384',
+        locale: 'en_US',
+        name: 'Brendan Eich',
+        timezone: -6,
+        updated_time: '2014-08-16T12:07:43+0000',
+        verified: true
+      }
     }
   },
 

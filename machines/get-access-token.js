@@ -36,10 +36,10 @@ module.exports = {
       description: 'Triggered when the Facebook API returns an error (i.e. a non-2xx status code)'
     },
     success: {
-      description: 'Returns the access token, and the timestamp when it expires (an epoch timestamp)',
+      description: 'Returns the access token, and the number of seconds remaining until it expires',
       example: {
         token: 'CA2Emk9XsJUIBAHB9sTF5rOdNmAXTDjiHxZaZC1GYtFZCcdYGVnLYZB7jZCvensIpGc22yEzN6CL6wtQ9LPVXTNkuP6eQoUQ0toEVPrmTTqDpj0POijBpsuZBnx7jrZCHaTw8leiZBn0R8u6gZAYZAuD77cA3tnDMYvHhrl42CnljROeC9maWoa5zbsT2TZBXdL9wEuGQDSxKqRPyajRw3P3HEK',
-        expires: 39523862396
+        expires: 5183789
       }
     }
   },
@@ -69,7 +69,7 @@ module.exports = {
       try {
         return exits.success({
           token: responseBody.match(/access_token=([a-z0-9]+)[^a-z0-9]{0,}/i)[1],
-          expires: responseBody.match(/expires=([0-9]+)[^0-9]{0,}/i)[1]
+          expires: +responseBody.match(/expires=([0-9]+)[^0-9]{0,}/i)[1]
         });
       } catch (parseError){
         return exits.error(parseError);
