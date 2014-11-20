@@ -1,6 +1,6 @@
 {
   "name": "machinepack-facebook",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Communicate with Facebook to authenticate, get profile data, friends, likes, and more.",
   "scripts": {
     "test": "mocha -b"
