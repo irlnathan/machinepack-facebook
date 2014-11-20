@@ -3,7 +3,7 @@ module.exports = {
   identity: 'get-user-by-access-token',
   friendlyName: 'Get user by access token',
   description: 'Get information about the Facebook user with the specified access token.',
-  extendedDescription: 'Retrieve the full Facebook user record accessible with the specified access token.  See https://developers.facebook.com/docs/graph-api/reference/v2.2/user for a reference of all fields returned.',
+  extendedDescription: '',
   cacheable: true,
 
   inputs: {
@@ -18,8 +18,12 @@ module.exports = {
   catchallExit: 'error',
 
   exits: {
-    error: {},
-    success: {}
+    error: {
+      description: 'The Facebook API returned an error (i.e. a non-2xx status code)'
+    },
+    success: {
+      description: 'Returns all available data for the Facebook user connected to the specified access token. Advanced details of all possible fields available at https://developers.facebook.com/docs/graph-api/reference/v2.2/user.'
+    }
   },
 
   fn: function (inputs,exits) {

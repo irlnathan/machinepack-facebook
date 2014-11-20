@@ -27,7 +27,9 @@ module.exports = {
   catchallExit: 'error',
 
   exits: {
-    error: {},
+    error: {
+      description: 'The Facebook API returned an error (i.e. a non-2xx status code)'
+    },
     success: {
       description: 'The new long-term access token.',
       example: 'aw9391th139sdvna$g00sdK!13gd'

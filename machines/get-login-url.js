@@ -27,9 +27,7 @@ module.exports = {
 
   exits: {
     error: {
-      example: {
-        message: ''
-      }
+      description: 'The Facebook API returned an error (i.e. a non-2xx status code)'
     },
     success: {
       example: 'https://www.facebook.com/dialog/oauth?client_id=215798311808508&redirect_uri=http://localhost:1337/user/facebook/login&scope=email,friends'
