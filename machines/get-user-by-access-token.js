@@ -19,7 +19,7 @@ module.exports = {
 
   exits: {
     error: {
-      description: 'The Facebook API returned an error (i.e. a non-2xx status code)'
+      description: 'Triggered when the Facebook API returns an error (i.e. a non-2xx status code)'
     },
     success: {
       description: 'Returns all available data for the Facebook user connected to the specified access token. Advanced details of all possible fields available at https://developers.facebook.com/docs/graph-api/reference/v2.2/user.'

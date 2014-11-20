@@ -1,7 +1,7 @@
 {
   "name": "machinepack-facebook",
   "version": "0.1.2",
-  "description": "Machines for working with the facebook.",
+  "description": "Communicate with Facebook to authenticate, get profile data, friends, likes, and more.",
   "scripts": {
     "test": "mocha -b"
   },
@@ -25,8 +25,7 @@
     "machines": [
       "get-access-token",
       "get-login-url",
-      "get-user-by-access-token",
-      "get-longterm-access-token"
+      "get-user-by-access-token"
     ]
   }
 }

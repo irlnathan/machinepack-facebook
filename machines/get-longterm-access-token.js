@@ -1,6 +1,10 @@
+/**
+ * WARNING:
+ * This machine is in alpha and not currently exposed by this machinepack.
+ */
+
 module.exports = {
 
-  identity: 'get-longterm-access-token',
   friendlyName: 'Get longterm access token',
   description: 'Swap a short term access token for a long term one.',
   extendedDescription: 'Retrieve a new long-term access token, which allows you to get information and perform actions on behalf of a particular Facebook user. Long-term tokens usually have a lifetime of about 60 days.',
@@ -9,7 +13,7 @@ module.exports = {
   inputs: {
     appId: {
       example: '215798311808508',
-      description: 'Your Facebook app id',
+      description: 'The unique identifier for your Facebook app  (i.e. this is the "App ID" listed on your app\'s dashboard page in the Facebook developer portal, e.g. https://developers.facebook.com/apps/215293311518502/dashboard)',
       required: true
     },
     appSecret: {
