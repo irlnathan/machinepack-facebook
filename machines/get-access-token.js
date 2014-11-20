@@ -36,10 +36,10 @@ module.exports = {
       description: 'Triggered when the Facebook API returns an error (i.e. a non-2xx status code)'
     },
     success: {
-      description: 'Returns the access token, and the number of seconds remaining until it expires',
+      description: 'Returns the access token itself, as well as the timestamp when it expires (as a ISO/JSON date)',
       example: {
         token: 'CA2Emk9XsJUIBAHB9sTF5rOdNmAXTDjiHxZaZC1GYtFZCcdYGVnLYZB7jZCvensIpGc22yEzN6CL6wtQ9LPVXTNkuP6eQoUQ0toEVPrmTTqDpj0POijBpsuZBnx7jrZCHaTw8leiZBn0R8u6gZAYZAuD77cA3tnDMYvHhrl42CnljROeC9maWoa5zbsT2TZBXdL9wEuGQDSxKqRPyajRw3P3HEK',
-        expires: 5183789
+        expires: '2014-11-20T20:34:26.632Z'
       }
     }
   },
@@ -67,9 +67,15 @@ module.exports = {
       // Parse Facebook Access Token from request Body
       var token;
       try {
+
         return exits.success({
           token: responseBody.match(/access_token=([a-z0-9]+)[^a-z0-9]{0,}/i)[1],
-          expires: +responseBody.match(/expires=([0-9]+)[^0-9]{0,}/i)[1]
+          expires: (function getExpirationDateAsISOString (){
+            var now = new Date();
+            var secondsFromNowToExpiry = +(responseBody.match(/expires=([0-9]+)[^0-9]{0,}/i)[1]);
+            var expirationDate = new Date( (now.getTime() + (secondsFromNowToExpiry*1000)) );
+            return expirationDate.toJSON();
+          })()
         });
       } catch (parseError){
         return exits.error(parseError);
