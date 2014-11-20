@@ -1,6 +1,5 @@
 module.exports = {
 
-  identity: 'get-login-url',
   friendlyName: 'Get Facebook login URL',
   description: 'Get the URL on facebook.com that a user should visit to allow/deny the specified Facebook Developer app (i.e. your app).',
   cacheable: true,

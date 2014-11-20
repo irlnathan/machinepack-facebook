@@ -1,6 +1,4 @@
 module.exports = {
-
-  identity: 'get-user-by-access-token',
   friendlyName: 'Get user by access token',
   description: 'Get information about the Facebook user with the specified access token.',
   extendedDescription: '',
