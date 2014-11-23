@@ -20,6 +20,10 @@
     "request": "^2.45.0",
     "node-machine": "^1.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/irlnathan/machinepack-facebook.git"
+  },
   "machinepack": {
     "machineDir": "machines",
     "machines": [
