@@ -1,5 +1,5 @@
 // Export Machine.pack() object for convenience
-module.exports = require('node-machine').pack({
+module.exports = require('machine').pack({
   pkg: require('./package.json'),
   dir: __dirname
 });
