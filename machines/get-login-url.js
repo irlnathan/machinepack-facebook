@@ -2,6 +2,7 @@ module.exports = {
 
   friendlyName: 'Get Facebook login URL',
   description: 'Get the URL on facebook.com that a user should visit to allow/deny the specified Facebook Developer app (i.e. your app).',
+  extendedDescription: 'This is the URL where you typically redirect a user in order for them to grant access to your Facebook app.',
   cacheable: true,
 
   inputs: {
