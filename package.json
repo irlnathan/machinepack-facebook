@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "request": "^2.45.0",
-    "machine": "^1.0.0"
+    "machine": "^2.0.3"
   },
   "repository": {
     "type": "git",
