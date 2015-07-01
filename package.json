@@ -14,7 +14,8 @@
   "author": "Mike McNeil",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "~1.19.0"
+    "mocha": "~1.19.0",
+    "test-machinepack-mocha": "^2.0.0"
   },
   "dependencies": {
     "request": "^2.45.0",
@@ -30,6 +31,7 @@
       "get-access-token",
       "get-login-url",
       "get-user-by-access-token"
-    ]
+    ],
+    "testsUrl": "https://travis-ci.org/irlnathan/machinepack-facebook"
   }
 }
