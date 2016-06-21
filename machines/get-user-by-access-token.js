@@ -44,7 +44,7 @@ module.exports = {
     // GET projects/ and send the api token as a header
     doJSONRequest({
       method: 'get',
-      url: '/v2.1/me',
+      url: '/v2.4/me?fields=id,name,email,first_name,gender, last_name, link, locale, timezone, updated_time, verified',
       data: {
         'access_token': inputs.accessToken
       },
@@ -55,5 +55,3 @@ module.exports = {
     });
   }
 };
-
-
